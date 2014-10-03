@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{840F4E49-2E88-E159-533A-E53CEA42C524}") = "tube-shooter-vr", "Assembly-CSharp.csproj", "{9AFD3277-15FB-B4DF-B5B2-705DF85A1E28}"
 EndProject
+Project("{840F4E49-2E88-E159-533A-E53CEA42C524}") = "tube-shooter-vr", "Assembly-CSharp-Editor.csproj", "{4C29D7DE-4130-642F-6AEB-BA262AECC1DB}"
+EndProject
 Project("{840F4E49-2E88-E159-533A-E53CEA42C524}") = "tube-shooter-vr", "Assembly-UnityScript-firstpass.unityproj", "{97CDE40E-4177-FA94-850E-BAE92AA8BDC5}"
 EndProject
 Global
@@ -15,6 +17,10 @@ Global
 		{9AFD3277-15FB-B4DF-B5B2-705DF85A1E28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AFD3277-15FB-B4DF-B5B2-705DF85A1E28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AFD3277-15FB-B4DF-B5B2-705DF85A1E28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C29D7DE-4130-642F-6AEB-BA262AECC1DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C29D7DE-4130-642F-6AEB-BA262AECC1DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C29D7DE-4130-642F-6AEB-BA262AECC1DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C29D7DE-4130-642F-6AEB-BA262AECC1DB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{97CDE40E-4177-FA94-850E-BAE92AA8BDC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{97CDE40E-4177-FA94-850E-BAE92AA8BDC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97CDE40E-4177-FA94-850E-BAE92AA8BDC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -23,7 +29,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
+		GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
@@ -41,4 +47,5 @@ Global
 		$3.inheritsScope = text/plain
 		$3.scope = text/plain
 	EndGlobalSection
+
 EndGlobal
