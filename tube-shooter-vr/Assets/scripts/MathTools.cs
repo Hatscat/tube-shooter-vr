@@ -38,6 +38,11 @@ namespace MathTools
 				{
 						return new Vector3 (cylCoordinates.rho * Mathf.Cos (cylCoordinates.theta), cylCoordinates.z, cylCoordinates.rho * Mathf.Sin (cylCoordinates.theta));
 				}
+
+				public static Vector3 CylindricToCartesianB (Cylindrical cylCoordinates)
+				{
+			return new Vector3 (cylCoordinates.rho * Mathf.Cos (cylCoordinates.theta), cylCoordinates.rho * Mathf.Sin (cylCoordinates.theta), cylCoordinates.z);
+				}
 	
 				public static Cylindrical CartesianToCylindric (Vector3 position)
 				{
