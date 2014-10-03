@@ -5,7 +5,7 @@ using MathTools;
 public class tube : MonoBehaviour {
 	
 	void Start () {
-		GetComponent<MeshFilter>().mesh = createTube1();
+		GetComponent<MeshFilter>().mesh = createTube2();
 	}
 	
 	void Update () {
@@ -25,7 +25,7 @@ public class tube : MonoBehaviour {
 		Vector2[] uv = new Vector2[(nSegments + 1) * 2];
 		
 		float height = 50f;
-		float radius = 2f;
+		float radius = 3f;
 		
 		//les vertices & uv
 		for (int i = 0; i < nSegments+1; i++) {
@@ -60,22 +60,30 @@ public class tube : MonoBehaviour {
 		Mesh mesh = new Mesh();
 		mesh.name = "tube";
 
-		int nSegmentsX = 50;
+		int nSegmentsX = 25;
 		int nSegmentsZ = 50;
+
+		int nSegmentsX1 = nSegmentsX + 1;
+		int nSegmentsZ1 = nSegmentsZ + 1;
 		
-		Vector3[] vertices = new Vector3[(nSegmentsX + 1) * (nSegmentsZ + 1)];
+		Vector3[] vertices = new Vector3[nSegmentsX1 * nSegmentsZ1];
 		//Vector3[] normals = new Vector3[3];
 		int[] triangles = new int[nSegmentsX * nSegmentsZ * 2 * 3];
-		Vector2[] uv = new Vector2[(nSegmentsX + 1) * (nSegmentsZ + 1)];
+		Vector2[] uv = new Vector2[nSegmentsX1 * nSegmentsZ1];
 		
-		float length = 8f;
-		float radius = 6f;
+		float length = 50f;
+		float radius = 5f;
 		
 		//les vertices & uv
 		int index = 0;
-		for (int i = 0; i < nSegmentsX+1; i++) {
-			for (int j = 0; j < nSegmentsZ+1; j++) {
-				vertices[index] = CoordSystem.CylindricToCartesianB(new CoordSystem.Cylindrical(radius, i * 2 * Mathf.PI / (nSegmentsX * nSegmentsZ), length));
+		float noise_factor = 2.8f;
+		for (int i = 0; i < nSegmentsX1; i++) {
+			for (int j = 0; j < nSegmentsZ1; j++) {
+				vertices[index] = CoordSystem.CylindricToCartesianB(
+					new CoordSystem.Cylindrical(radius * Mathf.PerlinNoise((float)i/nSegmentsX1 * noise_factor,
+				                                (float)j/nSegmentsZ1 * noise_factor), i * 2 * Mathf.PI / nSegmentsX,
+				                            	((float)j/nSegmentsZ1) * length)
+					);
 				index++;
 			}
 		}
@@ -84,13 +92,13 @@ public class tube : MonoBehaviour {
 		index = 0;
 		for (int i = 0; i < nSegmentsX; i++) {
 			for (int j = 0; j < nSegmentsZ; j++) {
-				triangles [index++] = i*(nSegmentsZ+1)+j;
-				triangles [index++] = i*(nSegmentsZ+1)+j+1;
-				triangles [index++] = (i+1)*(nSegmentsZ+1)+j;
+				triangles [index++] = i * nSegmentsZ1 + j;
+				triangles [index++] = i * nSegmentsZ1 + j + 1;
+				triangles [index++] = (i+1) * nSegmentsZ1 + j;
 				
-				triangles [index++] = i*(nSegmentsZ+1)+j+1;
-				triangles [index++] = (i+1)*(nSegmentsZ+1)+j+1;
-				triangles [index++] = (i+1)*(nSegmentsZ+1)+j;
+				triangles [index++] = i * nSegmentsZ1 + j + 1;
+				triangles [index++] = (i+1) * nSegmentsZ1 + j + 1;
+				triangles [index++] = (i+1) * nSegmentsZ1 + j;
 			}
 		}
 		
