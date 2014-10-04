@@ -59,10 +59,10 @@ public class player : MonoBehaviour {
 			tubeTrans.transform.Rotate(Vector3.forward*tubeSpeed*Time.deltaTime);
 		}
 
-		Debug.DrawRay(transform.position, new Vector3(-Mathf.Cos(cylCoord.theta),-Mathf.Sin(cylCoord.theta),0) *1000, Color.white);
+		//Debug.DrawRay(transform.position, new Vector3(-Mathf.Cos(cylCoord.theta),-Mathf.Sin(cylCoord.theta),0) *1000, Color.white);
 
-		cartPosition = tube.getPosOnTubeMesh(cylCoord.theta,cylCoord.z);
-		transform.position = new Vector3(cartPosition.x, cartPosition.y,transform.position.z);
+		//cartPosition = tube.getPosOnTubeMesh(cylCoord.theta,cylCoord.z);
+		//transform.position = new Vector3(cartPosition.x, cartPosition.y,transform.position.z);
 		//transform.Translate(cartPosition);
 
 //		if ((Input.GetButton("Fire1") || Input.GetKeyDown(KeyCode.Space))  && Time.time > nextFireLaser) 
