@@ -18,9 +18,25 @@ namespace MathTools
 						public float theta;
 						public float z;
 				}
-	
-				public struct Spherical
-				{
+
+		public struct CylindricalB
+		{
+			public CylindricalB (float rho, Vector2 shift, float theta, float z)
+			{
+				this.rho = rho;
+				this.shift = shift;
+				this.theta = theta;
+				this.z = z;
+			}
+
+			public float rho;
+			public Vector2 shift;
+			public float theta;
+			public float z;
+		}
+		
+		public struct Spherical
+		{
 						public Spherical (float rho, float theta, float phi)
 						{
 								this.rho = rho;
@@ -39,12 +55,17 @@ namespace MathTools
 						return new Vector3 (cylCoordinates.rho * Mathf.Cos (cylCoordinates.theta), cylCoordinates.z, cylCoordinates.rho * Mathf.Sin (cylCoordinates.theta));
 				}
 
-				public static Vector3 CylindricToCartesianB (Cylindrical cylCoordinates)
+				public static Vector3 CylindricToCartesianA (Cylindrical cylCoordinates)
 				{
-			return new Vector3 (cylCoordinates.rho * Mathf.Cos (cylCoordinates.theta), cylCoordinates.rho * Mathf.Sin (cylCoordinates.theta), cylCoordinates.z);
+					return new Vector3(cylCoordinates.rho * Mathf.Cos(cylCoordinates.theta), cylCoordinates.rho * Mathf.Sin(cylCoordinates.theta), cylCoordinates.z);
 				}
-	
-				public static Cylindrical CartesianToCylindric (Vector3 position)
+
+				public static Vector3 CylindricToCartesianB (CylindricalB cylCoordinates)
+				{
+			return new Vector3(cylCoordinates.rho * Mathf.Cos(cylCoordinates.theta) + cylCoordinates.shift.x, cylCoordinates.rho * Mathf.Sin(cylCoordinates.theta) + cylCoordinates.shift.y, cylCoordinates.z);
+				}
+		
+		public static Cylindrical CartesianToCylindric (Vector3 position)
 				{
 						float rho = Mathf.Sqrt (position.x * position.x + position.z * position.z);
 						float theta = 0;
