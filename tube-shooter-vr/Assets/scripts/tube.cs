@@ -57,9 +57,8 @@ public class tube : MonoBehaviour {
 
 	public static Vector3 getPosOnTubeMesh (float theta, float z) {
 
-		//int i = (int)(theta * nSegmentsX / (Mathf.PI * 2) * (nSegmentsX + 1));
 		float i_f = theta / (Mathf.PI * 2) * nSegmentsX;
-		float j_f = z / length;
+		float j_f = z / length * nSegmentsZ;
 
 		int[] i_s = new int[2] {(int)i_f, (int)i_f+1};
 		int[] j_s = new int[2] {(int)j_f, (int)j_f+1};
