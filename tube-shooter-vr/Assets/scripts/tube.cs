@@ -67,7 +67,7 @@ public class tube : MonoBehaviour {
 		//Debug.Log(i_s[1]);
 		//Debug.Log(j_s[0]);
 		//Debug.Log(j_s[1]);
-		Debug.DrawLine(_tube_mesh.vertices[j_s[0]+(i_s[1]*(nSegmentsZ+1))], _tube_mesh.vertices[j_s[1]+(i_s[0]*(nSegmentsZ+1))], Color.red);
+		//Debug.DrawLine(_tube_mesh.vertices[j_s[0]+(i_s[1]*(nSegmentsZ+1))], _tube_mesh.vertices[j_s[1]+(i_s[0]*(nSegmentsZ+1))], Color.red);
 		return Vector3.Lerp(_tube_mesh.vertices[j_s[0]+(i_s[1]*(nSegmentsZ+1))], _tube_mesh.vertices[j_s[1]+(i_s[0]*(nSegmentsZ+1))], (i_f-i_s[0])*(j_f-j_s[0]));
 	}
 
@@ -148,11 +148,11 @@ public class tube : MonoBehaviour {
 
 					triangles[index++] = (i+1) * nSegmentsZ1 + j;
 					triangles[index++] = (i+1) * nSegmentsZ1 + j + 1;
-					triangles[index++] = nSegmentsZ1 + j;
+					triangles[index++] = j;
 					
-					triangles[index++] = i * nSegmentsZ1 + j + 1;
-					triangles[index++] = nSegmentsZ1 + j + 1;
-					triangles[index++] = (i+1) * nSegmentsZ1 + j;
+					triangles[index++] = (i+1) * nSegmentsZ1 + j + 1;
+					triangles[index++] = j + 1;
+					triangles[index++] = j;
 				}
 			}
 		}
