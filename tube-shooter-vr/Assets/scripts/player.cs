@@ -17,6 +17,7 @@ public class player : MonoBehaviour {
 	private Vector3 nexPos;
 	private GameObject shoot;
 	private Vector3 cartPosition;
+	private float rotate=0;
 
 	CoordSystem.Cylindrical cylCoord;
 	// Use this for initialization
@@ -48,16 +49,11 @@ public class player : MonoBehaviour {
 //				shootParam.transform.parent = transform;
 //			}
 		}
-
-		cylCoord.theta += Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-		if(cylCoord.theta  >  Mathf.PI/2 + Mathf.PI/6){
-			cylCoord.theta = Mathf.PI/2 + Mathf.PI/6;
-			tubeTrans.transform.Rotate(-Vector3.forward*tubeSpeed*Time.deltaTime);
-		}
-		else if(cylCoord.theta < Mathf.PI/2 - Mathf.PI/6) {
-			cylCoord.theta = Mathf.PI/2 - Mathf.PI/6;
-			tubeTrans.transform.Rotate(Vector3.forward*tubeSpeed*Time.deltaTime);
-		}
+		Debug.Log (Mathf.Clamp(rotate,-25,25));
+		rotate += Input.GetAxis("Horizontal") * speed*50 * Time.deltaTime;
+		rotate = Mathf.Clamp(rotate,-25,25);
+		transform.rotation = Quaternion.Euler(new Vector3(0,0, rotate));
+		tubeTrans.transform.Rotate(Input.GetAxis("Horizontal")* Vector3.forward*tubeSpeed*Time.deltaTime);
 
 		//Debug.DrawRay(transform.position, new Vector3(-Mathf.Cos(cylCoord.theta),-Mathf.Sin(cylCoord.theta),0) *1000, Color.white);
 
