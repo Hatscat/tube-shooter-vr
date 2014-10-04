@@ -64,7 +64,6 @@
      <Compile Include="Assets\scripts\MathTools.cs" />
      <Compile Include="Assets\scripts\bullet.cs" />
      <Compile Include="Assets\scripts\enemy.cs" />
-     <Compile Include="Assets\scripts\getPosOnTube.cs" />
      <Compile Include="Assets\scripts\player.cs" />
      <Compile Include="Assets\scripts\simpleCamMove.cs" />
      <Compile Include="Assets\scripts\states.cs" />
