@@ -135,13 +135,13 @@ public class tube : MonoBehaviour {
 		//les vertices & uv
 		int index = 0;
 		float noise_factor = 2.8f;
-		float rand_seed = Random.value;
+		float rand_seed = Random.value * 1000;
 
 		for (int i = 0; i < nSegmentsX1; i++) {
 			for (int j = 0; j < nSegmentsZ1; j++) {
 				vertices[index] = CoordSystem.CylindricToCartesianB(
-					new CoordSystem.Cylindrical(radius * Mathf.PerlinNoise((float)i/nSegmentsX1 * noise_factor * rand_seed,
-				                                                       (float)j/nSegmentsZ1 * noise_factor * rand_seed), i * 2 * Mathf.PI / nSegmentsX,
+					new CoordSystem.Cylindrical(radius * Mathf.PerlinNoise((float)i/nSegmentsX1 * noise_factor + rand_seed,
+				                                                       (float)j/nSegmentsZ1 * noise_factor + rand_seed), i * 2 * Mathf.PI / nSegmentsX,
 				                            ((float)j/nSegmentsZ1) * length)
 					);
 				index++;
