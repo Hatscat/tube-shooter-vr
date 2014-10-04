@@ -23,13 +23,13 @@ public class tube : MonoBehaviour {
 
 	void Start () {
 
-		nSegmentsX = 24;
+		nSegmentsX = 23;
 		nSegmentsZ = 30;
 		length = 180f;
 		radius = 2f;
 		radius_offset = 1.3f;
-		noise_x = 6f;
-		noise_z = 6f;
+		noise_x = 4f;
+		noise_z = 1f;
 		rand_seed = Random.value;
 		rho_shift = 0.09f;
 
