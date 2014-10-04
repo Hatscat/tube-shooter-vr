@@ -5,13 +5,16 @@ using MathTools;
 public class player : MonoBehaviour {
 	public Transform tube;
 	public float speed;
-//	public float fireRateLaser;
+	public float fireRateLaser;
+	public float laserSpeed;
 //	public float fireRateMisile;
-//	public Transform shotSpawn;
-//	private float nextFireLaser=0f;
+	public Transform shotSpawn;
+	public GameObject laser;
+	private float nextFireLaser=0f;
 //	private float nextFireMisile=0f;
 	private float theta;
 	private Vector3 nexPos;
+	private GameObject shoot;
 
 	CoordSystem.Cylindrical cylCoord;
 	// Use this for initialization
@@ -21,7 +24,21 @@ public class player : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		//cylCoord = MathTools.CoordSystem.CartesianToCylindric(transform.position);
+		if(Input.GetButton("Fire1")) {
+			RaycastHit hit;
+			Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+			if (Physics.Raycast(ray, out hit) && Time.time > nextFireLaser) {
+				nextFireLaser = Time.time + fireRateLaser;
+				shoot = Instantiate(laser, shotSpawn.position, transform.rotation) as GameObject;
+				bullet shootParam = shoot.GetComponent<bullet>();
+				shootParam.startAngle = cylCoord.theta;
+				shootParam.endAngle =  180; //tocyldyndre(hit.point).theta;
+				shootParam.duration =  1;
+				shootParam.speed = laserSpeed;
+				shootParam.transform.parent = transform;
+			}
+		}
+
 		cylCoord.theta += Input.GetAxis("Horizontal") * speed * Time.deltaTime;
 		if(cylCoord.theta > 10) {
 			cylCoord.theta = 10;
