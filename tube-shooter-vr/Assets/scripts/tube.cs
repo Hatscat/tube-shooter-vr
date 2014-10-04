@@ -3,7 +3,7 @@ using System.Collections;
 using MathTools;
 
 public class tube : MonoBehaviour {
-	
+	public float rotateSpeed;
 	void Start () {
 		GetComponent<MeshFilter>().mesh = createTube3();
 	}
