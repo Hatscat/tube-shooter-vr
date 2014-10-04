@@ -3,8 +3,9 @@ using System.Collections;
 using MathTools;
 
 public class player : MonoBehaviour {
-	public Transform tube;
+	public Transform tubeTrans;
 	public float speed;
+	public float tubeSpeed;
 	public float fireRateLaser;
 	public float laserSpeed;
 //	public float fireRateMisile;
@@ -15,40 +16,54 @@ public class player : MonoBehaviour {
 	private float theta;
 	private Vector3 nexPos;
 	private GameObject shoot;
+	private Vector3 cartPosition;
 
 	CoordSystem.Cylindrical cylCoord;
 	// Use this for initialization
 	void Start () {
 		cylCoord = new CoordSystem.Cylindrical ();
+		cylCoord.theta = Mathf.PI/2;
+		cylCoord.z = transform.position.z;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetButton("Fire1")) {
-			RaycastHit hit;
-			Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-			if (Physics.Raycast(ray, out hit) && Time.time > nextFireLaser) {
-				nextFireLaser = Time.time + fireRateLaser;
-				shoot = Instantiate(laser, shotSpawn.position, transform.rotation) as GameObject;
-				bullet shootParam = shoot.GetComponent<bullet>();
-				shootParam.startAngle = cylCoord.theta;
-				shootParam.endAngle =  180; //tocyldyndre(hit.point).theta;
-				shootParam.duration =  1;
-				shootParam.speed = laserSpeed;
-				shootParam.transform.parent = transform;
-			}
+		if(Input.GetButton("Fire1") && Time.time > nextFireLaser) {
+			shoot = Instantiate(laser, shotSpawn.position, Camera.main.transform.rotation) as GameObject;
+			bullet shootParam = shoot.GetComponent<bullet>();
+			shootParam.direction = Camera.main.transform.forward;
+			shootParam.speed = laserSpeed;
+			shootParam.transform.parent = transform;
+			nextFireLaser = Time.time + fireRateLaser;
+//			RaycastHit hit;
+//			Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+//			if (Physics.Raycast(ray, out hit) && Time.time > nextFireLaser) {
+//				nextFireLaser = Time.time + fireRateLaser;
+//				shoot = Instantiate(laser, shotSpawn.position, transform.rotation) as GameObject;
+//				bullet shootParam = shoot.GetComponent<bullet>();
+//				shootParam.startAngle = cylCoord.theta;
+//				shootParam.endAngle =  MathTools.CoordSystem.CartesianToCylindric();
+//				shootParam.duration =  1;
+//				shootParam.speed = laserSpeed;
+//				shootParam.transform.parent = transform;
+//			}
 		}
 
 		cylCoord.theta += Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-		if(cylCoord.theta > 10) {
-			cylCoord.theta = 10;
-			tube.transform.Rotate(Vector3.forward*speed*Time.deltaTime);
+		if(cylCoord.theta  >  Mathf.PI/2 + Mathf.PI/6){
+			cylCoord.theta = Mathf.PI/2 + Mathf.PI/6;
+			tubeTrans.transform.Rotate(-Vector3.forward*tubeSpeed*Time.deltaTime);
 		}
-		else if(cylCoord.theta < -10) {
-			cylCoord.theta = -10;
-			tube.transform.Rotate(-Vector3.forward*speed*Time.deltaTime);
+		else if(cylCoord.theta < Mathf.PI/2 - Mathf.PI/6) {
+			cylCoord.theta = Mathf.PI/2 - Mathf.PI/6;
+			tubeTrans.transform.Rotate(Vector3.forward*tubeSpeed*Time.deltaTime);
 		}
-		//transform.Translate(MathTools.CoordSystem.CylindricToCartesian(cylCoord));
+
+		Debug.DrawRay(transform.position, new Vector3(-Mathf.Cos(cylCoord.theta),-Mathf.Sin(cylCoord.theta),0) *1000, Color.white);
+
+		//cartPosition = tube.getPosOnTubeMesh(cylCoord.theta,cylCoord.z);
+		//transform.position = new Vector3(cartPosition.x, cartPosition.y,transform.position.z);
+		//transform.Translate(cartPosition);
 
 //		if ((Input.GetButton("Fire1") || Input.GetKeyDown(KeyCode.Space))  && Time.time > nextFireLaser) 
 //		{

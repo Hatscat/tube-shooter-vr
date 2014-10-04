@@ -67,7 +67,7 @@ namespace MathTools
 		
 		public static Cylindrical CartesianToCylindric (Vector3 position)
 		{
-			float rho = Mathf.Sqrt (position.x * position.x + position.z * position.z);
+			float rho = Mathf.Sqrt (position.x * position.x + position.y * position.y);
 			float theta = 0;
 			
 			if (position.x == 0) {
