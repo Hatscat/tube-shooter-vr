@@ -62,7 +62,6 @@
      <Compile Include="Assets\OVR\Scripts\OVRVisionGuide.cs" />
      <Compile Include="Assets\scripts\MathTools.cs" />
      <Compile Include="Assets\scripts\enemy.cs" />
-     <Compile Include="Assets\scripts\getPosOnTube.cs" />
      <Compile Include="Assets\scripts\player.cs" />
      <Compile Include="Assets\scripts\tube.cs" />
      <None Include="Assets\Plugins\donotdelete.txt" />
