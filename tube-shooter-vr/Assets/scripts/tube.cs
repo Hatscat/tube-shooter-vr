@@ -59,15 +59,16 @@ public class tube : MonoBehaviour {
 
 		float i_f = theta / (Mathf.PI * 2) * nSegmentsX;
 		float j_f = z / length * nSegmentsZ;
-
+		//Debug.Log (z);
+		//Debug.Log (j_f);
 		int[] i_s = new int[2] {(int)i_f, (int)i_f+1};
 		int[] j_s = new int[2] {(int)j_f, (int)j_f+1};
-//		Debug.Log(i_s[0]);
-//		Debug.Log(i_s[1]);
-//		Debug.Log(j_s[0]);
-//		Debug.Log(j_s[1]);
-		return Vector3.Lerp(_tube_mesh.vertices[j_s[0]+(i_s[1]*nSegmentsZ)], _tube_mesh.vertices[j_s[1]+(i_s[0]*nSegmentsZ)], (i_f-i_s[0])*(j_f-j_s[0]));
-		//return Vector3.zero;
+		//Debug.Log(i_s[0]);
+		//Debug.Log(i_s[1]);
+		//Debug.Log(j_s[0]);
+		//Debug.Log(j_s[1]);
+		Debug.DrawLine(_tube_mesh.vertices[j_s[0]+(i_s[1]*(nSegmentsZ+1))], _tube_mesh.vertices[j_s[1]+(i_s[0]*(nSegmentsZ+1))], Color.red);
+		return Vector3.Lerp(_tube_mesh.vertices[j_s[0]+(i_s[1]*(nSegmentsZ+1))], _tube_mesh.vertices[j_s[1]+(i_s[0]*(nSegmentsZ+1))], (i_f-i_s[0])*(j_f-j_s[0]));
 	}
 
 //	public static int getVerticesIndex (int i, int j, int maxSegZ) {
