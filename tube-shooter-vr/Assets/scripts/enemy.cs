@@ -2,13 +2,13 @@
 using System.Collections;
 using MathTools;
 public class enemy : MonoBehaviour {
-	public float speed;
-	public AnimationCurve spline;
-	public float startAngle;
-	public float endAngle;
-	public float duration;
+	public float speed; //speed on Z axis
+	public AnimationCurve spline; // curve of theta change
+	public float startAngle; // theta start
+	public float endAngle; // theta end
+	public float duration; // time to go from theta start to theta end in seconds
 	public bool loop;
-	public bool revert;
+	public bool revert; // revert back from thetaEnd to thetaEnd
 	private float timer=0;
 	private bool reverted=false;
 	CoordSystem.Cylindrical cylCoord;
@@ -21,6 +21,7 @@ public class enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		cylCoord.theta = Mathf.Lerp(startAngle,endAngle,spline.Evaluate(timer/duration));
+		cylCoord.z -= speed*Time.deltaTime;
 		timer+=Time.deltaTime;
 		if(cylCoord.theta==endAngle) {
 			if(revert && (!reverted || loop)) {
