@@ -26,8 +26,8 @@ public class tube : MonoBehaviour {
 
 	void Start () {
 
-		nSegmentsX = 24;
-		nSegmentsZ = 24;
+		nSegmentsX = 23;
+		nSegmentsZ = 22;
 		length = 90f;
 		radius = 2f;
 		radius_offset = 1.3f;
@@ -36,7 +36,7 @@ public class tube : MonoBehaviour {
 		rand_seed = Random.value;
 		rho_shift = 0.2f;
 
-		update_deltaTime = _update_timer = 0.04f;
+		update_deltaTime = _update_timer = 0.05f;
 		//_speed = 30f;
 		_step = 0;
 		//_target = Vector3.zero;
