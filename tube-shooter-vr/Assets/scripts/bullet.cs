@@ -14,7 +14,7 @@ public class bullet : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.Translate(direction * speed * Time.deltaTime, Space.World);
-		if(!transform.GetChild(0).renderer.isVisible) {
+		if(!transform.renderer.isVisible) {
 			Destroy(gameObject);
 		}
 		else if(Vector3.Distance(transform.parent.position, transform.position) >= 10) {
@@ -25,8 +25,7 @@ public class bullet : MonoBehaviour {
 	void OnTriggerEnter(Collider col){
 		if(col.transform.name != transform.parent.name) {
 			Destroy(gameObject);
-			//Destroy(col.gameObject);
-			//col.collider.SendMessage("hit", null, SendMessageOptions.DontRequireReceiver);
+			col.collider.SendMessage("hit", null, SendMessageOptions.DontRequireReceiver);
 		}
 	}
 
