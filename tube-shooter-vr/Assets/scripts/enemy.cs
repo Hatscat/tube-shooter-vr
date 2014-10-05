@@ -20,7 +20,8 @@ public class enemy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		transform.position = new Vector3(Camera.main.transform.position.x,Camera.main.transform.position.y-0.35f, Camera.main.transform.position.z+transform.position.z);
+		//transform.rotation = Quaternion.Euler(Camera.main.transform.rotation.x+transform.rotation.x,Camera.main.transform.rotation.y+transform.rotation.y,Camera.main.transform.rotation.z+transform.rotation.z);
 	}
 
 	
