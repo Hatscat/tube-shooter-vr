@@ -11,7 +11,9 @@ public class menu_bt : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if(Input.GetButton("Fire1")) {
+			Application.LoadLevel(1);
+		}
 	}
 
 	void OnMouseDown () {
